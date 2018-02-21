@@ -1,0 +1,99 @@
+# depslib dependency file v1.0
+1519144708 source:c:\users\alexandru.chirila\desktop\cb\vehsim\dm.cpp
+	<iostream>
+	<cstdint>
+	"DM.h"
+
+1519134729 c:\users\alexandru.chirila\desktop\cb\vehsim\dm.h
+	<cstdint>
+	<vector>
+	"OS.h"
+	"RM.h"
+
+1519216518 source:c:\users\alexandru.chirila\desktop\cb\vehsim\init.cpp
+	"Init.h"
+	"RM.h"
+	<stdlib.h>
+	<chrono>
+
+1519216020 c:\users\alexandru.chirila\desktop\cb\vehsim\init.h
+	<iostream>
+	<string>
+	"DM.h"
+	"RM.h"
+	<fstream>
+
+1519136472 c:\users\alexandru.chirila\desktop\cb\vehsim\rm.h
+	<cstdint>
+	<vector>
+	"OS.h"
+	<string>
+
+1519216077 source:c:\users\alexandru.chirila\desktop\cb\vehsim\main.cpp
+	<iostream>
+	"Init.h"
+	"OS.h"
+
+1519136531 source:c:\users\alexandru.chirila\desktop\cb\vehsim\rm.cpp
+	"RM.h"
+	<iostream>
+	<string>
+
+1518531233 c:\users\alexandru.chirila\desktop\cb\vehsim\os.h
+	<cstdint>
+
+1518531276 source:c:\users\alexandru.chirila\desktop\cb\vehsim\os.cpp
+	"OS.h"
+
+1519144708 source:c:\users\alex\downloads\vehsim\dm.cpp
+	<iostream>
+	<cstdint>
+	"DM.h"
+
+1519134729 c:\users\alex\downloads\vehsim\dm.h
+	<cstdint>
+	<vector>
+	"OS.h"
+	"RM.h"
+
+1518531233 c:\users\alex\downloads\vehsim\os.h
+	<cstdint>
+
+1519136472 c:\users\alex\downloads\vehsim\rm.h
+	<cstdint>
+	<vector>
+	"OS.h"
+	<string>
+
+1519144026 source:c:\users\alex\downloads\vehsim\init.cpp
+	"Init.h"
+	"RM.h"
+	<time.h>
+	<stdlib.h>
+	<chrono>
+	<thread>
+
+1518620547 c:\users\alex\downloads\vehsim\init.h
+	<iostream>
+	<string>
+	"DM.h"
+	"RM.h"
+	<fstream>
+
+1519144504 source:c:\users\alex\downloads\vehsim\main.cpp
+	<iostream>
+	"Init.h"
+	"OS.h"
+
+1518531276 source:c:\users\alex\downloads\vehsim\os.cpp
+	"OS.h"
+
+1519136531 source:c:\users\alex\downloads\vehsim\rm.cpp
+	"RM.h"
+	<iostream>
+	<string>
+
+1519216572 source:c:\users\alexandru.chirila\desktop\cb\vehsim\tools.cpp
+
+1519157081 c:\users\alexandru.chirila\desktop\cb\vehsim\tools.h
+
