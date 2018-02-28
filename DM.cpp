@@ -23,6 +23,10 @@ void DispatchManager::AddVehicle(uint16_t startTile, uint16_t startTick, string 
     tempVeh.vehEasyName = vehName;
     //todo: add error-handling in case the vehicle cant be added to list
     VehList.push_back(tempVeh);
+        #ifdef DEBUG
+        cout << "Added vehicle:" << endl;
+        cout << "\tName [" << tempVeh.vehEasyName << "], starting at tick [" << tempVeh.sTick << "] and on tile [" << tempVeh.sTile << "]" << endl;
+        #endif // DEBUG
 
     currVehNo++;
 }

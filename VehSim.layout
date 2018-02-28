@@ -2,59 +2,64 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="DM.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Init.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3394" topLine="72" />
-		</Cursor>
-	</File>
-	<File name="DM.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1036" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="Init.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="463" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="RM.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3193" topLine="95" />
-		</Cursor>
-	</File>
-	<File name="RM.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="641" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="Tools.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="42" topLine="0" />
+			<Cursor1 position="4733" topLine="118" />
 		</Cursor>
 	</File>
 	<File name="Tools.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2" topLine="0" />
+			<Cursor1 position="70" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="344" topLine="0" />
+			<Cursor1 position="537" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="DM.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="813" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="RM.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3639" topLine="105" />
+		</Cursor>
+	</File>
+	<File name="DM.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1036" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="Init.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="614" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="OS.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="333" topLine="0" />
+			<Cursor1 position="806" topLine="25" />
 		</Cursor>
 	</File>
 	<File name="OS.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="170" topLine="0" />
+			<Cursor1 position="247" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Init.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RM.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="429" topLine="0" />
+			<Cursor1 position="641" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="Tools.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="91" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="readme.txt" open="1" top="1" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7191" topLine="56" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

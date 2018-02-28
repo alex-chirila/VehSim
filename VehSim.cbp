@@ -14,6 +14,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
+					<Add option="-DDEBUG" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,6 +36,7 @@
 		<Unit filename="Tools.cpp" />
 		<Unit filename="Tools.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="readme.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />

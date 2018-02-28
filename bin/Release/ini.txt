@@ -1,6 +1,37 @@
 [SECTION]
 VEHICLES
+NumVehicles = 3
+Veh0TickOffset = 0
+Veh0Segment = 0
+Veh0EasyName = TM-12-AAA
+Veh1TickOffset = 0
+Veh1Segment = 2
+Veh1EasyName = TM-23-BBB
+Veh2TickOffset = 130
+Veh2Segment = 3
+Veh2EasyName = TM-55-DDD
+NumLines=1
+Line1 = 33
 [SECTION]
-ROAD SEGMENTS
+ROAD
+NumSegments = 8
+Section0Length = 600
+Section0Name = ST-Aradului
+Section1Length = 720
+Section1Name = Seg-AraduluiAntenei
+Section2Length = 120
+Section2Name = ST-Antenei
+Section3Length = 900
+Section3Name = Seg-AnteneiGara
+Section4Length = 180
+Section4Name = ST-GaraNord
+Section5Length = 780
+Section5Name = Seg-GaraCentru
+Section6Length = 90
+Section6Name = ST-Centru
+Section7Length = 990
+Section7Name = Seg-CentruAradului
 [SECTION]
 GENERAL
+StartTime = 24000
+EndTime = 40000

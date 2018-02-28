@@ -30,8 +30,9 @@ void RoadManager::AddSegment(uint16_t setDifficulty, string segEasyName)
     tempTile.changeBoundLow = 10;
     tempTile.intervalToChange = 100;
     tempTile.timeSinceLastChange = 0;
+        //
     tempTile.nVehiclesOnTile = 0;
-    tempTile.segType = STATION; //default type if prefix does not indicate otherwise
+    tempTile.segType = REGULAR; //default type if prefix does not indicate otherwise
     if (segEasyName.find("SEM-"))
     {
         tempTile.segType = TLIGHT;
@@ -41,7 +42,10 @@ void RoadManager::AddSegment(uint16_t setDifficulty, string segEasyName)
         tempTile.segType = STATION;
     }
     SegList.push_back(tempTile);
-
+        #ifdef DEBUG
+        cout << "Adding road segment: " << endl;
+        cout << "\t[" << tempTile.segEasyName << "], difficulty [" << tempTile.baseDifficulty << "]" << endl;
+        #endif // DEBUG
     nextSegNo++;
 }
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1519144708 source:c:\users\alexandru.chirila\desktop\cb\vehsim\dm.cpp
+1519655345 source:c:\users\alexandru.chirila\desktop\cb\vehsim\dm.cpp
 	<iostream>
 	<cstdint>
 	"DM.h"
@@ -10,13 +10,15 @@
 	"OS.h"
 	"RM.h"
 
-1519216518 source:c:\users\alexandru.chirila\desktop\cb\vehsim\init.cpp
+1519659001 source:c:\users\alexandru.chirila\desktop\cb\vehsim\init.cpp
 	"Init.h"
 	"RM.h"
 	<stdlib.h>
 	<chrono>
+	<string>
+	"Tools.h"
 
-1519216020 c:\users\alexandru.chirila\desktop\cb\vehsim\init.h
+1519652209 c:\users\alexandru.chirila\desktop\cb\vehsim\init.h
 	<iostream>
 	<string>
 	"DM.h"
@@ -29,21 +31,22 @@
 	"OS.h"
 	<string>
 
-1519216077 source:c:\users\alexandru.chirila\desktop\cb\vehsim\main.cpp
+1519655564 source:c:\users\alexandru.chirila\desktop\cb\vehsim\main.cpp
 	<iostream>
 	"Init.h"
 	"OS.h"
 
-1519136531 source:c:\users\alexandru.chirila\desktop\cb\vehsim\rm.cpp
+1519655617 source:c:\users\alexandru.chirila\desktop\cb\vehsim\rm.cpp
 	"RM.h"
 	<iostream>
 	<string>
 
-1518531233 c:\users\alexandru.chirila\desktop\cb\vehsim\os.h
+1519654310 c:\users\alexandru.chirila\desktop\cb\vehsim\os.h
 	<cstdint>
 
-1518531276 source:c:\users\alexandru.chirila\desktop\cb\vehsim\os.cpp
+1519654338 source:c:\users\alexandru.chirila\desktop\cb\vehsim\os.cpp
 	"OS.h"
+	<iostream>
 
 1519144708 source:c:\users\alex\downloads\vehsim\dm.cpp
 	<iostream>
@@ -93,7 +96,10 @@
 	<iostream>
 	<string>
 
-1519216572 source:c:\users\alexandru.chirila\desktop\cb\vehsim\tools.cpp
+1519651659 source:c:\users\alexandru.chirila\desktop\cb\vehsim\tools.cpp
+	"Tools.h"
+	<sstream>
 
-1519157081 c:\users\alexandru.chirila\desktop\cb\vehsim\tools.h
+1519651459 c:\users\alexandru.chirila\desktop\cb\vehsim\tools.h
+	<string>
 
