@@ -1,29 +1,7 @@
-///Todo and questions:
-
-///CAT: Todo (core features pertaining to sim)
-///3. Should there be a lower limit to number of tiles? (eg 3)
-
-///CAT: Todo (advanced features)
-/// Add vehicle fuel levels
-/// Check if vehicle idle too long (e.g. at a traffic light gone awry)
-/// Path of vehicle given as a series of segments
-/// Segment junction list
-/// Vehicle line assigned by DM
-/// Passenger simulator: while waiting in station, add odds for a passenger to arrive
-    ///Direct influence: tile difficulty for a certain vehicle
-
-///CAT: Nice-to-have
-
-/// Can multiple vehicles occupy the same tile? If so, how many?
-    /// YES They can!
-    /// Todo: add code to restrict vehicles based on tile difficulty
-/// Path to ini file given as CLI param
-
 #include <iostream>
 #include "Init.h"
 #include "OS.h"
-
-//#define DEBUG
+#include "Tools.h"
 
 using namespace std;
 
@@ -49,8 +27,8 @@ int main()
     while(1)
     {
         TT.MainTask();
-        DM.MainTask(TT, RM);
-        RM.MainTask(TT);
+        //DM.MainTask(TT, RM);
+        //RM.MainTask(TT);
         TT.Tick();
         if (TT.getTick() >= nCyclesToRun)
         {

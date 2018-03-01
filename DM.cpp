@@ -11,21 +11,23 @@ DispatchManager::DispatchManager()
     nIdleVehs = 0;
 }
 
-void DispatchManager::AddVehicle(uint16_t startTile, uint16_t startTick, string vehName)
+void DispatchManager::AddVehicle(uint16_t fuel, string vehName)
 {
     nIdleVehs++;
     Vehicle tempVeh;
-    tempVeh.sTick = startTick;
-    tempVeh.currTile = startTile;
-    tempVeh.sTile = startTile;
+        //Start tick and tile to be later determined!
+    tempVeh.sTick = 65535;
+    tempVeh.currTile = 65535;
+    tempVeh.sTile = 65535;
+
+    tempVeh.fuelLevel = fuel;
     tempVeh.state = STARTIDLE;
     tempVeh.vehID = currVehNo;
     tempVeh.vehEasyName = vehName;
     //todo: add error-handling in case the vehicle cant be added to list
     VehList.push_back(tempVeh);
         #ifdef DEBUG
-        cout << "Added vehicle:" << endl;
-        cout << "\tName [" << tempVeh.vehEasyName << "], starting at tick [" << tempVeh.sTick << "] and on tile [" << tempVeh.sTile << "]" << endl;
+        cout << "Added vehicle:" << tempVeh.vehEasyName << " with fuel level " << tempVeh.fuelLevel << endl;
         #endif // DEBUG
 
     currVehNo++;

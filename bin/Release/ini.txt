@@ -1,37 +1,76 @@
 [SECTION]
 VEHICLES
 NumVehicles = 3
-Veh0TickOffset = 0
-Veh0Segment = 0
 Veh0EasyName = TM-12-AAA
-Veh1TickOffset = 0
-Veh1Segment = 2
+Veh0Fuel = 100
 Veh1EasyName = TM-23-BBB
-Veh2TickOffset = 130
-Veh2Segment = 3
+Veh1Fuel = 100
 Veh2EasyName = TM-55-DDD
-NumLines=1
-Line1 = 33
+Veh2Fuel = 100
 [SECTION]
 ROAD
 NumSegments = 8
+[0]
 Section0Length = 600
 Section0Name = ST-Aradului
+[1]
 Section1Length = 720
 Section1Name = Seg-AraduluiAntenei
+[2]
 Section2Length = 120
 Section2Name = ST-Antenei
+[3]
 Section3Length = 900
 Section3Name = Seg-AnteneiGara
+[4]
 Section4Length = 180
 Section4Name = ST-GaraNord
+[5]
 Section5Length = 780
 Section5Name = Seg-GaraCentru
+[6]
 Section6Length = 90
 Section6Name = ST-Centru
+[7]
 Section7Length = 990
 Section7Name = Seg-CentruAradului
 [SECTION]
 GENERAL
-StartTime = 24000
-EndTime = 40000
+StartTime = 0
+EndTime = 86400
+[SECTION]
+DRIVERS
+NDrivers = 8
+[Driver 0]
+D1N = "Alex"
+D0STT = 18000
+D0STP = 46800
+[Driver 1]
+D1N = "Mihai"
+D1STT = 18000
+D1STP = 50400
+[Driver 2]
+D2N = "Dan"
+D2STT = 43200
+D2STP = 82800
+[Driver 3]
+D3N = "Florin"
+D1STT = 43200
+D1STP = 57600
+[Driver 4]
+D1N = "Gheorghe"
+D1STT = 55800
+D1STP = 82800
+[SECTION]
+ROUTES
+NRoutes = 1
+Route0ID = E1
+Route0SegmentCount = 8
+Route0Segment0 = 0
+Route0Segment1 = 1
+Route0Segment2 = 2
+Route0Segment3 = 3
+Route0Segment4 = 4
+Route0Segment5 = 5
+Route0Segment6 = 6
+Route0Segment7 = 7

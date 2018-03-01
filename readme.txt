@@ -28,7 +28,7 @@ This document shall contain "natural language" requirements. As such, these requ
 2.2.2 Vehicles:
 2.2.2.1 A vehicle is represented by some relevant properties: its current driver, its fuel level, its occupancy status (vs maximum), and its general condition (ability to travel at max road speed, chance to break down).
 2.2.2.2 The vehicle is available for usage at any time of the day, restricted only by its current condition and its fuel level.
-2.2.2.3 A vehicle may not run out of fuel. It may, however, determine it needs refueling. In this case the DM is notified, and upon reaching the end of the route, the vehicle may be retired for a certain in-sim time. //TODO: This should take into consideration vehicle type, if tramway then the fuel is practically infinite//
+2.2.2.3 A vehicle may determine it needs refueling. In this case the DM is notified, and upon reaching the end of the route, the vehicle may be retired for a certain in-sim time. //TODO: This should take into consideration vehicle type, if tramway then the fuel is practically infinite.
 2.2.2.4 For convenience, travel time from garage to the entry point of the route is not considered. Vehicles are immaterial, will "appear" on a tile when requested, and will disappear from a tile if needed (end of shift etc).
 2.2.3 Drivers:
 2.2.3.1 A driver is represented by some relevant properties: his current fatigue, his schedule, the line he is assigned to serve.
@@ -37,10 +37,6 @@ This document shall contain "natural language" requirements. As such, these requ
 2.2.4.1 The DM will set-up certain routes. A route is a list of segments that a vehicle will follow. These routes may either be baked in (BAH!), or given via config files. In any case, the DM should do a sanity check (see 2.1.6).
 2.2.4.2 Routes will have some attributes, such as demand for vehicles. The DM is responsible for managing the available vehicles versus the demand.
 2.2.4.3 Another property of a route should be service times. These should be given as "first vehicle leaving" and "last vehicle to start a round".
-2.2.5
-//todo: add timetables!
-//todo: add lines covering segments
-//todo: add fuel levels
 
 2.3 Time Tracker
 2.3.1 The TT is a module which keeps track of current simulation time.

@@ -30,7 +30,7 @@ void Initializer::ParseIniData(DispatchManager& DM, RoadManager& RM, TimeTracker
     uint16_t i; //i-terator
     string currSecName; //section in INI FILE
     string currSegmName, currSegmLength;
-    string currVeOF, currVeSG, currVeEN; //StartTick, SeGment, EasyName
+    string currVeFU, currVeEN; //Fuel, EasyName
 
         //read in general data
     currSecName = "GENERAL";
@@ -76,40 +76,23 @@ void Initializer::ParseIniData(DispatchManager& DM, RoadManager& RM, TimeTracker
     for (i=0; i < tempInt; i++)
     {
         //build names
-        tempStr1 = "Veh" + ConvertIntToString(i) + "TickOffset";
-        tempStr2 = "Veh" + ConvertIntToString(i) + "Segment";
+        tempStr2 = "Veh" + ConvertIntToString(i) + "Fuel";
         tempStr3 = "Veh" + ConvertIntToString(i) + "EasyName";
-        findInSection(currSecName, tempStr1, currVeOF);
-        findInSection(currSecName, tempStr2, currVeSG);
+        findInSection(currSecName, tempStr2, currVeFU);
         findInSection(currSecName, tempStr3, currVeEN);
             #ifdef INIDEBUG
-            cout << "\tSearched for labels: " << tempStr1 + ", " + tempStr2 + ", " + tempStr3 << endl;
-            cout << "\tRead vehicle: OF " << currVeOF << " SG " << currVeSG << " EN: " << currVeEN << endl;
+            cout << "\tSearched for labels: " << tempStr2 + ", " + tempStr3 << endl;
+            cout << "\tRead vehicle: FUEL: " << currVeFU << " ; EN: " << currVeEN << endl;
             #endif // DEBUG
-        DM.AddVehicle(stoi(currVeSG), stoi(currVeOF)+TT.getStartTick(), currVeEN);
+        DM.AddVehicle(stoi(currVeFU), currVeEN); //start time & tile to be updated later!
     }//end for
+
+    //at this point, the slurped contents of the ini file are useless, can be discarded
+    IniFileContents.clear();
+        //create anonymous vector of same type as IniFileContents, but empty
+        //"swap" elements between anonymous vector and IFC, thereby forcing IFC to deallocate all space
+    vector<string>().swap(IniFileContents);
 }
-
-/*
-bool Initializer::findInSection(string secName, string whatToFind, string& retVal)
-{
-    uint16_t i;
-    bool searchSuccess = false;
-    uint16_t startLine = getSectionOffset(secName);
-    uint16_t nrLines = getSectionLength(secName);
-
-    for (i = startLine; i <= (startLine+nrLines); i++)
-    {
-        if (std::string::npos != IniFileContents[i].find(whatToFind))
-        {
-            //one line contains the required text!
-            retVal = IniFileContents[i+1];
-            searchSuccess = true;
-        }
-    }
-
-    return searchSuccess;
-} */
 
 bool Initializer::findInSection(string secName, string whatToFind, string& retVal)
 {

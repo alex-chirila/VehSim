@@ -24,6 +24,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add option="-DDEBUG" />
+			<Add option="-DINIDEBUG" />
 		</Compiler>
 		<Unit filename="DM.cpp" />
 		<Unit filename="DM.h" />
@@ -35,6 +37,7 @@
 		<Unit filename="RM.h" />
 		<Unit filename="Tools.cpp" />
 		<Unit filename="Tools.h" />
+		<Unit filename="bin/Release/ini.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="readme.txt" />
 		<Extensions>
