@@ -6,7 +6,7 @@ using namespace std;
 TimeTracker::TimeTracker()
 {
     currTick = 0;
-    endTick = 3600; //will most likely be overwritten, but best provide a default value;
+    endTick = 86400; //default to one full day, but may be overwritten
 }
 
 uint16_t TimeTracker::Tick()

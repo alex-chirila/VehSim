@@ -40,9 +40,9 @@ StartTime = 0
 EndTime = 86400
 [SECTION]
 DRIVERS
-NDrivers = 8
+NDrivers = 5
 [Driver 0]
-D1N = "Alex"
+D0N = "Alex"
 D0STT = 18000
 D0STP = 46800
 [Driver 1]
@@ -55,12 +55,12 @@ D2STT = 43200
 D2STP = 82800
 [Driver 3]
 D3N = "Florin"
-D1STT = 43200
-D1STP = 57600
+D3STT = 43200
+D3STP = 57600
 [Driver 4]
-D1N = "Gheorghe"
-D1STT = 55800
-D1STP = 82800
+D4N = "Gheorghe"
+D4STT = 55800
+D4STP = 82800
 [SECTION]
 ROUTES
 NRoutes = 1
@@ -74,3 +74,20 @@ Route0Segment4 = 4
 Route0Segment5 = 5
 Route0Segment6 = 6
 Route0Segment7 = 7
+Route0StartService = 18000
+Route0StopService = 82800
+    // this indicates where the DM is allowed to insert a new vehicle
+Route0InsertionPoints = 2
+    //first insertion point is tile 0
+Route0IP0 = 0
+Route0IP1 = 4
+Route0NumTimeIntervals = 3
+Route0TimeInterval0NVehs =
+Route0TimeInterval0Start =
+Route0TimeInterval0TStop =
+Route0TimeInterval1NVehs =
+Route0TimeInterval1Start =
+Route0TimeInterval1TStop =
+Route0TimeInterval2NVehs =
+Route0TimeInterval2Start =
+Route0TimeInterval2TStop =

@@ -49,7 +49,7 @@ void RoadManager::AddSegment(uint16_t setDifficulty, string segEasyName)
     nextSegNo++;
 }
 
-string RoadManager::getTileEasyName(uint16_t id)
+string RoadManager::GetTileEasyName(uint16_t id)
 {
     return SegList[id].segEasyName;
 }
@@ -71,7 +71,7 @@ void RoadManager::ListTiles()
     cout << endl;
 }
 
-void RoadManager::notifyNewVehicleOnTile(uint16_t tileNo)
+void RoadManager::NotifyNewVehicleOnTile(uint16_t tileNo)
 {
     if (tileNo <= (nextSegNo-1))
     {
@@ -86,7 +86,7 @@ void RoadManager::notifyNewVehicleOnTile(uint16_t tileNo)
     }
 }
 
-void RoadManager::notifyToRemoveVehicleFromTile(uint16_t tileNo)
+void RoadManager::NotifyToRemoveVehicleFromTile(uint16_t tileNo)
 {
     if (tileNo <= (nextSegNo-1))
     {
@@ -113,23 +113,17 @@ void RoadManager::notifyToRemoveVehicleFromTile(uint16_t tileNo)
     }
 }
 
-uint16_t RoadManager::getTileDifficulty(uint16_t tileNo)
+uint16_t RoadManager::GetTileDifficulty(uint16_t tileNo)
 {
     return SegList[tileNo].currDifficulty;
 }
 
-uint16_t RoadManager::getNumTiles()
+uint16_t RoadManager::GetNumTiles()
 {
     return (nextSegNo - 1);
-}
-void RoadManager::HandleTrafficLights()
-{
-
 }
 
 void RoadManager::MainTask(TimeTracker& TT)
 {
     ///TODO: Add code for the random changing of tile difficulty.
-    ///TODO: Add code for semaphores;
-    HandleTrafficLights();
 }

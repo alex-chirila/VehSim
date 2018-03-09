@@ -9,6 +9,7 @@ DispatchManager::DispatchManager()
     //do nothing
     currVehNo = 0;
     nIdleVehs = 0;
+    nDrivers = 0;
 }
 
 void DispatchManager::AddVehicle(uint16_t fuel, string vehName)
@@ -32,6 +33,24 @@ void DispatchManager::AddVehicle(uint16_t fuel, string vehName)
 
     currVehNo++;
 }
+void DispatchManager::AddDriver(string iniName, uint32_t recommendedStart, uint32_t recommendedStop)
+{
+    Driver tempDrv;
+
+    tempDrv.assignedVehicle = 65535; //default value
+    tempDrv.availableStartTime = recommendedStart;
+    tempDrv.availableStopTime = recommendedStop;
+    tempDrv.driverName = iniName;
+    tempDrv.status = NOTASSIGNED;
+    tempDrv.todayStartTime = 4294967295;
+    tempDrv.todayStopTime = 4294967295;
+    DriverList.push_back(tempDrv);
+        #ifdef DEBUG
+        cout << "Added driver: " << tempDrv.driverName << ", who prefers to start at " << tempDrv.availableStartTime << " and to finish shift at "
+            << tempDrv.availableStopTime << endl;
+        #endif // DEBUG
+    nDrivers++;
+}
 
 void DispatchManager::ListVehicles()
 {
@@ -45,7 +64,7 @@ void DispatchManager::ListVehicles()
     cout << endl;
 }
 
-void DispatchManager::checkIfAnyVehicleNeedsToStart(TimeTracker& TT, RoadManager& RM)
+void DispatchManager::CheckIfAnyVehicleNeedsToStart(TimeTracker& TT, RoadManager& RM)
 {
     if (nIdleVehs > 0)
     {
@@ -57,8 +76,8 @@ void DispatchManager::checkIfAnyVehicleNeedsToStart(TimeTracker& TT, RoadManager
             {
                 VehList[i].state = MOVING;
                 VehList[i].timestampTileEntered = currTick;
-                RM.notifyNewVehicleOnTile(VehList[i].sTile);
-                VehList[i].diffOfCurrTile = RM.getTileDifficulty(VehList[i].sTile);
+                RM.NotifyNewVehicleOnTile(VehList[i].sTile);
+                VehList[i].diffOfCurrTile = RM.GetTileDifficulty(VehList[i].sTile);
                 nIdleVehs--; //one less vehicle is idling
                 cout << "Vehicle " << VehList[i].vehEasyName << " is now moving. Time is: " << currTick << endl;
             } //end if
@@ -70,7 +89,7 @@ void DispatchManager::checkIfAnyVehicleNeedsToStart(TimeTracker& TT, RoadManager
         //cout << " All vehicles moving at tick " << TT.getTick() << endl;
     }
 }
-void DispatchManager::moveVehicles(TimeTracker& TT, RoadManager& RM)
+void DispatchManager::MoveVehicles(TimeTracker& TT, RoadManager& RM)
 {
     uint64_t currTick = TT.getTick();
 
@@ -84,9 +103,9 @@ void DispatchManager::moveVehicles(TimeTracker& TT, RoadManager& RM)
         if ((MOVING == VehList[i].state) && (timeSpentOnTile == VehList[i].diffOfCurrTile))
         {
             //notify RM to remove vehicle from old tile
-            RM.notifyToRemoveVehicleFromTile(VehList[i].currTile);
+            RM.NotifyToRemoveVehicleFromTile(VehList[i].currTile);
             //compute new tile
-            uint16_t maxTiles = RM.getNumTiles();
+            uint16_t maxTiles = RM.GetNumTiles();
                 //vehicle at end of journey; wrap around
             if (maxTiles == VehList[i].currTile)
             {
@@ -97,18 +116,18 @@ void DispatchManager::moveVehicles(TimeTracker& TT, RoadManager& RM)
                 //just advance one tile
                 VehList[i].currTile++;
             }
-            RM.notifyNewVehicleOnTile(VehList[i].currTile);
-            VehList[i].diffOfCurrTile = RM.getTileDifficulty(VehList[i].currTile);
+            RM.NotifyNewVehicleOnTile(VehList[i].currTile);
+            VehList[i].diffOfCurrTile = RM.GetTileDifficulty(VehList[i].currTile);
             //update timestamp!
             VehList[i].timestampTileEntered = currTick;
-            cout << VehList[i].vehEasyName << " has moved to " << RM.getTileEasyName(VehList[i].currTile) << " on tick " << currTick << endl;
-            cout << "\t Expected difficulty: " << RM.getTileDifficulty(VehList[i].currTile) << endl;
+            cout << VehList[i].vehEasyName << " has moved to " << RM.GetTileEasyName(VehList[i].currTile) << " on tick " << currTick << endl;
+            cout << "\t Expected difficulty: " << RM.GetTileDifficulty(VehList[i].currTile) << endl;
         } //end if
     }//end for
 }//end func
 
 void DispatchManager::MainTask(TimeTracker& TT, RoadManager& RM)
 {
-    checkIfAnyVehicleNeedsToStart(TT, RM);
-    moveVehicles(TT, RM);
+    CheckIfAnyVehicleNeedsToStart(TT, RM);
+    MoveVehicles(TT, RM);
 }

@@ -4,6 +4,19 @@ Requirements
 
 This document shall contain "natural language" requirements. As such, these requirements are considered to be system-level at the lowest, but otherwise they are use cases or simply natural descriptions of what the software IS / DOES.
 
+0.1 Project info / requirements
+0.1.1 Coding standards
+0.1.1.1 Function naming:
+0.1.1.1.1 All class names shall be one-word, Uppercase.
+0.1.1.1.2 All public functions of a class shall be PascalCase.
+0.1.1.1.3 All private functions of a class shall be camelCase.
+0.1.2 Tooling:
+0.1.2.1 The source code shall be C++11 compatible. Backward compatibility is not considered.
+0.1.2.2 The variable sizes and operations shall support 64-bit widths.
+0.1.3 Variable types:
+0.1.3.1 Numbers shall be represented by integer types.
+0.1.3.2 Real numbers may only be used during output to file/screen. Internally, to obtain a real number, the program must use integers for computation.
+
 1. General description
 
 1.1 The software simulates one or more vehicles on a road.
@@ -43,6 +56,7 @@ This document shall contain "natural language" requirements. As such, these requ
 2.3.2 Simulation time is expressed in "ticks", which are not unlike real-life seconds. However, the passing of a tick is NOT tied to any particular hardware implementation or real-life measurement unit. Simply, a tick will elapse when there are no more operations to be performed in that tick.
 2.3.3 The Start Moment and the End Moment shall be configurable. By default, start will be on tick 0 and end will be on tick 86400 (equivalent of 24h).
 2.3.4 The timer shall not "wrap around". If one needs to simulate several days, simply use multiples of 86400 for the end moment. (implementation hint: use the largest integer value available on your platform).
+2.3.5 The TT shall offer an interface function, to display the time in a user-friendly format: current day, hour and minute.
 
 2.4 Passenger Manager
 2.4.1 A passenger is an entity which can do the following actions in the sim: wait in a station until a vehicle with the correct line nr. arrives; travels with said vehicle until a certain road segment; disembarks.

@@ -24,74 +24,158 @@ Initializer::Initializer()
 void Initializer::ParseIniData(DispatchManager& DM, RoadManager& RM, TimeTracker& TT)
 {
         //variables
-    uint64_t tempLong;
-    uint16_t tempInt;
-    string tempStr1, tempStr2, tempStr3;
-    uint16_t i; //i-terator
-    string currSecName; //section in INI FILE
-    string currSegmName, currSegmLength;
-    string currVeFU, currVeEN; //Fuel, EasyName
+    //uint16_t tempInt;
+    //string tempStr1, tempStr2, tempStr3;
+    //uint16_t i; //i-terator
+    //string currSegmName, currSegmLength;
+    //string currVeFU, currVeEN; //Fuel, EasyName
+        //todo: push variables into corresponding for loop
+        //for improved visibility
+    //string currDrvName, currDrvStart, currDrvStop;
 
         //read in general data
-    currSecName = "GENERAL";
-    findInSection(currSecName, "StartTime", tempStr);
-    tempLong = std::stoull(tempStr);
-        #ifdef INIDEBUG
-        cout << "Setting start time to : " << tempLong << endl;
-        #endif // debug
-    TT.setStartTick(tempLong);
-    findInSection(currSecName, "EndTime", tempStr);
-    tempLong = std::stoull(tempStr);
-    TT.setEndTick(tempLong);
-        #ifdef INIDEBUG
-        cout << "Setting end time to : " << tempLong << endl;
-        #endif // debug
+    populateGeneralData(TT);
 
         //read in RM data
-    currSecName = "ROAD";
-    findInSection(currSecName, "NumSegments", tempStr);
-    tempInt = std::atoi(tempStr.c_str());
-        #ifdef INIDEBUG
-        cout << "N road segments in input file: " << tempInt << endl;
-        #endif // debug
-    for (i=0; i < tempInt; i++)
-    {
-        tempStr1 = "Section" + ConvertIntToString(i) + "Name";
-        tempStr2 = "Section" + ConvertIntToString(i) + "Length";
-        findInSection(currSecName, tempStr1, currSegmName);
-        findInSection(currSecName, tempStr2, currSegmLength);
-            #ifdef INIDEBUG
-            cout << "\tSearched for labels " << tempStr1 << " and " << tempStr2 << endl;
-            cout << "\t\tRead road section [" << currSegmName << "] with difficulty [" << currSegmLength << "]" << endl;
-            #endif // DEBUG
-        RM.AddSegment(stoi(currSegmLength), currSegmName);
-    }
-    //read in DM data
-    currSecName = "VEHICLES";
-    findInSection(currSecName, "NumVehicles", tempStr);
-    tempInt = std::atoi(tempStr.c_str());
-        #ifdef INIDEBUG
-        cout << "N Vehicles: " << tempInt << endl;
-        #endif // DEBUG
-    for (i=0; i < tempInt; i++)
-    {
-        //build names
-        tempStr2 = "Veh" + ConvertIntToString(i) + "Fuel";
-        tempStr3 = "Veh" + ConvertIntToString(i) + "EasyName";
-        findInSection(currSecName, tempStr2, currVeFU);
-        findInSection(currSecName, tempStr3, currVeEN);
-            #ifdef INIDEBUG
-            cout << "\tSearched for labels: " << tempStr2 + ", " + tempStr3 << endl;
-            cout << "\tRead vehicle: FUEL: " << currVeFU << " ; EN: " << currVeEN << endl;
-            #endif // DEBUG
-        DM.AddVehicle(stoi(currVeFU), currVeEN); //start time & tile to be updated later!
-    }//end for
+    populateRoadManagerData(RM);
+
+    //read in Veh data
+    populateVehicleData(DM);
+
+    //read in driver data
+    populateDriverData(DM);
+
+    //read in route data
+    populateRouteData(DM);
 
     //at this point, the slurped contents of the ini file are useless, can be discarded
     IniFileContents.clear();
         //create anonymous vector of same type as IniFileContents, but empty
         //"swap" elements between anonymous vector and IFC, thereby forcing IFC to deallocate all space
     vector<string>().swap(IniFileContents);
+}
+
+void Initializer::populateGeneralData(TimeTracker& TT)
+{
+    string tempStr = "";
+    string currSectionName = "GENERAL";
+    findInSection(currSectionName, "StartTime", tempStr);
+
+    uint64_t tempLong = std::stoull(tempStr);
+
+        #ifdef INIDEBUG
+        cout << "Setting start time to : " << tempLong << endl;
+        #endif // debug
+
+    TT.setStartTick(tempLong);
+    findInSection(currSectionName, "EndTime", tempStr);
+    tempLong = std::stoull(tempStr);
+    TT.setEndTick(tempLong);
+
+        #ifdef INIDEBUG
+        cout << "Setting end time to : " << tempLong << endl;
+        #endif // debug
+}
+
+void Initializer::populateRoadManagerData(RoadManager& RM)
+{
+    string currSectionName = "ROAD";
+    findInSection(currSectionName, "NumSegments", tempStr); ///TODO: remove tempStr from global class scope
+    uint16_t nSegments = std::atoi(tempStr.c_str());
+        #ifdef INIDEBUG
+        cout << "N road segments in input file: " << nSegments << endl;
+        #endif // debug
+
+    uint16_t i; //iterator
+
+    for (i=0; i < nSegments; i++)
+    {
+        string tempStr1 = "";
+
+        tempStr1 = "Section" + ConvertIntToString(i) + "Name";
+        string currSegmName;
+        findInSection(currSectionName, tempStr1, currSegmName);
+
+        tempStr1 = "Section" + ConvertIntToString(i) + "Length";
+        string currSegmLength;
+        findInSection(currSectionName, tempStr1, currSegmLength);
+
+            #ifdef INIDEBUG
+            cout << "\t\tRead road section [" << currSegmName << "] with difficulty [" << currSegmLength << "] from ini file." << endl;
+            #endif // DEBUG
+        RM.AddSegment(stoi(currSegmLength), currSegmName);
+    }
+}
+
+void Initializer::populateVehicleData(DispatchManager& DM)
+{
+    string currSectionName = "VEHICLES";
+    uint16_t nVehicles;
+    findInSection(currSectionName, "NumVehicles", tempStr);
+    nVehicles = std::atoi(tempStr.c_str());
+
+        #ifdef INIDEBUG
+        cout << "N Vehicles: " << nVehicles << endl;
+        #endif // DEBUG
+
+    uint16_t i; //iterator
+
+    for (i=0; i < nVehicles; i++)
+    {
+        //build names
+        tempStr2 = "Veh" + ConvertIntToString(i) + "Fuel";
+        tempStr3 = "Veh" + ConvertIntToString(i) + "EasyName";
+        findInSection(currSectionName, tempStr2, currVeFU);
+        findInSection(currSectionName, tempStr3, currVeEN);
+            #ifdef INIDEBUG
+            cout << "\tSearched for labels: " << tempStr2 + ", " + tempStr3 << endl;
+            cout << "\t\tRead vehicle: FUEL: " << currVeFU << " ; EN: " << currVeEN << endl;
+            #endif // DEBUG
+        DM.AddVehicle(stoi(currVeFU), currVeEN); //start time & tile to be updated later!
+    }//end for
+
+}
+
+void Initializer::populateDriverData(DispatchManager& DM)
+{
+    currSectionName = "DRIVERS";
+    findInSection(currSectionName, "NDrivers", tempStr);
+    tempInt = std::atoi(tempStr.c_str());
+        #ifdef INIDEBUG
+        cout << "N Drivers: " << tempInt << endl;
+        #endif // INIDEBUG
+    for (i=0; i < tempInt; i++)
+    {
+        string tempStr1, currDrvName, currDrvStart, currDrvStop;
+
+        //build var names
+        tempStr1 = "D" + ConvertIntToString(i) + "N";
+        findInSection(currSectionName, tempStr1, currDrvName);
+        tempStr1 = "D" + ConvertIntToString(i) + "STT";
+        findInSection(currSectionName, tempStr1, currDrvStart);
+        tempStr1 = "D" + ConvertIntToString(i) + "STP";
+        findInSection(currSectionName, tempStr1, currDrvStop);
+        DM.AddDriver(currDrvName, (uint32_t)stoi(currDrvStart), (uint32_t)stoi(currDrvStop));
+
+    }//end for
+}
+
+void Initializer::populateRouteData(DispatchManager& DM)
+{
+    //read in route data
+    currSectionName = "ROUTES";
+    findInSection(currSectionName, "NRoutes", tempStr);
+    tempInt = std::atoi(tempStr.c_str());
+
+    for (i=0; i < tempInt; i++)
+    {
+        string thisIname = ConvertIntToString(i);
+
+            //read route ID
+        tempStr1 = "Route" + thisIname + "ID";
+        findInSection(currSectionName, tempStr1, thisIname);
+
+    }
 }
 
 bool Initializer::findInSection(string secName, string whatToFind, string& retVal)

@@ -19,6 +19,12 @@ class Initializer
         uint16_t getSectionOffset(string);
         uint16_t getSectionLength(string);
         bool findInSection(string secName, string whatToFind, string& retVal);
+        void populateGeneralData(TimeTracker&);
+        void populateRoadManagerData(RoadManager&);
+        void populateVehicleData(DispatchManager&);
+        void populateDriverData(DispatchManager&);
+        void populateRouteData(DispatchManager&);
+
         string fullPathToIniFile;
         ifstream iniFPo; //file pointer
         string tempStr;
@@ -29,6 +35,14 @@ class Initializer
             uint16_t sectionOffset;
         } Section;
 
+        typedef struct
+        {
+            string routeName;
+            vector<uint16_t> segList; //first element is the start point
+            vector<uint16_t> insertionPoints;
+        } Route;
+
         vector<Section> SectList;
         vector<string> IniFileContents;
+        vector<Route> RouteList;
 };

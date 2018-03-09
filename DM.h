@@ -11,14 +11,16 @@ class DispatchManager
     public:
         DispatchManager();
         void AddVehicle(uint16_t fuelLevel, string vehName);
+        void AddDriver(string name, uint32_t recommendedStart, uint32_t recommendedStop);
         void MainTask(TimeTracker&, RoadManager&);
         void ListVehicles();
-        void checkIfAnyVehicleNeedsToStart(TimeTracker&, RoadManager&);
-        void moveVehicles(TimeTracker&, RoadManager&);
+        void CheckIfAnyVehicleNeedsToStart(TimeTracker&, RoadManager&);
+        void MoveVehicles(TimeTracker&, RoadManager&);
 
     private:
         uint16_t currVehNo;
         uint16_t nIdleVehs;
+        uint16_t nDrivers;
 
         enum vehState
         {
@@ -40,22 +42,29 @@ class DispatchManager
             vehState state;
             string vehEasyName;
             uint16_t diffOfCurrTile;
-
         } Vehicle;
 
         enum driverStatus
         {
+                //actually driving
             DRIVING,
-            IDLING
+                //driving but told by DM to hold position
+            IDLE,
+                //not assigned to vehicle, default
+            NOTASSIGNED
         };
 
         typedef struct
         {
-            string driverID;
+            string driverName;
             uint32_t availableStartTime;
             uint32_t availableStopTime;
+            uint32_t todayStartTime;
+            uint32_t todayStopTime;
+            uint16_t assignedVehicle; //array index in vehicle vector
             driverStatus status;
         } Driver;
 
         vector<Vehicle> VehList;
+        vector<Driver> DriverList;
 };
