@@ -10,10 +10,29 @@ class DispatchManager
 {
     public:
         DispatchManager();
+
+        enum routeInfoType
+        {
+            ID,
+            STT, //start time of route
+            STP, //end time of route
+            SEG, //another segment number
+            IP, //insertion point number
+            TIS, //time-interval start-time
+            TIVC, //time-interval vehicle count
+        };
+
+            //adders
         void AddVehicle(uint16_t fuelLevel, string vehName);
         void AddDriver(string name, uint32_t recommendedStart, uint32_t recommendedStop);
+        void AddInfoToRoute(routeInfoType, string);
+
         void MainTask(TimeTracker&, RoadManager&);
+
+            //helpers
         void ListVehicles();
+
+            //actual work
         void CheckIfAnyVehicleNeedsToStart(TimeTracker&, RoadManager&);
         void MoveVehicles(TimeTracker&, RoadManager&);
 

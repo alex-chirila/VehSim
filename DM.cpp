@@ -52,6 +52,13 @@ void DispatchManager::AddDriver(string iniName, uint32_t recommendedStart, uint3
     nDrivers++;
 }
 
+void DispatchManager::AddInfoToRoute(routeInfoType infoType, string info)
+{
+    #ifdef DEBUG
+    cout << "\t Received info to add: " << info << endl;
+    #endif // DEBUG
+}
+
 void DispatchManager::ListVehicles()
 {
     for (int i = 0; i < currVehNo; i++)

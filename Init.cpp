@@ -1,5 +1,6 @@
 #include "Init.h"
 #include "RM.h"
+#include "DM.h"
 //#include <time.h>
 #include <stdlib.h>
 #include <chrono>
@@ -122,6 +123,7 @@ void Initializer::populateVehicleData(DispatchManager& DM)
 
     for (i=0; i < nVehicles; i++)
     {
+        string tempStr2, tempStr3, currVeEN, currVeFU;
         //build names
         tempStr2 = "Veh" + ConvertIntToString(i) + "Fuel";
         tempStr3 = "Veh" + ConvertIntToString(i) + "EasyName";
@@ -138,12 +140,15 @@ void Initializer::populateVehicleData(DispatchManager& DM)
 
 void Initializer::populateDriverData(DispatchManager& DM)
 {
-    currSectionName = "DRIVERS";
+    string currSectionName = "DRIVERS";
     findInSection(currSectionName, "NDrivers", tempStr);
-    tempInt = std::atoi(tempStr.c_str());
+    uint16_t tempInt = std::atoi(tempStr.c_str());
         #ifdef INIDEBUG
         cout << "N Drivers: " << tempInt << endl;
         #endif // INIDEBUG
+
+    uint16_t i;
+
     for (i=0; i < tempInt; i++)
     {
         string tempStr1, currDrvName, currDrvStart, currDrvStop;
@@ -163,19 +168,67 @@ void Initializer::populateDriverData(DispatchManager& DM)
 void Initializer::populateRouteData(DispatchManager& DM)
 {
     //read in route data
-    currSectionName = "ROUTES";
-    findInSection(currSectionName, "NRoutes", tempStr);
-    tempInt = std::atoi(tempStr.c_str());
+    string currSectionName = "ROUTES";
+    string tempRetVal;
+    findInSection(currSectionName, "NRoutes", tempRetVal);
+    uint16_t numRoutes = std::atoi(tempRetVal.c_str());
+        #ifdef INIDEBUG
+        cout << "Reading number of routes: " << numRoutes << endl;
+        #endif // INIDEBUG
 
-    for (i=0; i < tempInt; i++)
+    uint16_t i;
+
+    for (i=0; i < numRoutes; i++)
     {
-        string thisIname = ConvertIntToString(i);
-
+        string tempReturnValue;
             //read route ID
-        tempStr1 = "Route" + thisIname + "ID";
-        findInSection(currSectionName, tempStr1, thisIname);
+        string tempLabelName;
 
-    }
+        string thisRouteID;
+        string thisRouteSTT, thisrouteSTP; //start time, stop time : first and last time on route
+        uint16_t thisRouteIPs;
+        string thisRouteIPs_string;
+
+        uint16_t j; //inner iterator
+
+        tempLabelName = "Route" + ConvertIntToString(i) + "ID";
+        findInSection(currSectionName, tempLabelName, thisRouteID);
+            #ifdef INIDEBUG
+            cout << "Route ID: " << thisRouteID << endl;
+            #endif // INIDEBUG
+
+        tempLabelName = "Route" + ConvertIntToString(i) + "StartService";
+        findInSection(currSectionName, tempLabelName, thisRouteSTT);
+            #ifdef INIDEBUG
+            cout << "\tStart of service: " << thisRouteSTT << endl;
+            #endif // INIDEBUG
+
+        tempLabelName = "Route" + ConvertIntToString(i) + "StopService";
+        findInSection(currSectionName, tempLabelName, thisrouteSTP);
+            #ifdef INIDEBUG
+            cout << "\tEnd of service: " << thisrouteSTP << endl;
+            #endif // INIDEBUG
+
+        tempLabelName = "Route" + ConvertIntToString(i) + "Route0InsertionPoints";
+        findInSection(currSectionName, tempLabelName, thisRouteIPs_string);
+        thisRouteIPs = std::stoi(thisRouteIPs_string.c_str());
+            #ifdef INIDEBUG
+            cout << "\tNumber of insertion points: " << thisRouteIPs << endl;
+            #endif // INIDEBUG
+
+        for (j = 0; j < thisRouteIPs; j++)
+        {
+            string thisIPNum;
+            tempLabelName = "Route" + ConvertIntToString(i) + "IP" + ConvertIntToString(j);
+            findInSection(currSectionName, tempLabelName, thisIPNum);
+            DM.AddInfoToRoute(DispatchManager::IP, thisIPNum);
+        }//end for j
+
+        uint16_t thisRouteNTIs; //number of time intervals; each time interval will have a different number of vehicles
+
+        //do the heavy lifting
+
+    }//end for i
 }
 
 bool Initializer::findInSection(string secName, string whatToFind, string& retVal)
@@ -195,6 +248,11 @@ bool Initializer::findInSection(string secName, string whatToFind, string& retVa
             //return the substring after the "=" sign (+ a space)
             retVal = IniFileContents[i].substr(positionOfEqual+2, std::string::npos);
             searchSuccess = true;
+            #ifdef INIDEBUG
+            cout << "\t\t\t\t Find in section: " << secName << endl;
+            cout << "\t\t\t\t\t Looking for: " << whatToFind << endl;
+            cout << "\t\t\t\t\t Value found: " << retVal << endl;
+            #endif // INIDEBUG
         }
     }
 

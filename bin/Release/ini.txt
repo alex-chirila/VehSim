@@ -81,13 +81,22 @@ Route0InsertionPoints = 2
     //first insertion point is tile 0
 Route0IP0 = 0
 Route0IP1 = 4
-Route0NumTimeIntervals = 3
-Route0TimeInterval0NVehs =
-Route0TimeInterval0Start =
-Route0TimeInterval0TStop =
-Route0TimeInterval1NVehs =
-Route0TimeInterval1Start =
-Route0TimeInterval1TStop =
-Route0TimeInterval2NVehs =
-Route0TimeInterval2Start =
-Route0TimeInterval2TStop =
+Route0NumTimeIntervals = 6
+    //8am
+Route0TimeInterval0NVehs = 4
+Route0TimeInterval0Start = 28800
+    //11am
+Route0TimeInterval1NVehs = 2
+Route0TimeInterval1Start = 39600
+    //4pm
+Route0TimeInterval2NVehs = 3
+Route0TimeInterval2Start = 57600
+    //6pm
+Route0TimeInterval3NVehs  = 4
+Route0TimeInterval3Start = 64800
+    //9pm
+Route0TimeInterval4NVehs  = 2
+Route0TimeInterval4Start = 75600
+    //11pm
+Route0TimeInterval5NVehs  = 0
+Route0TimeInterval5Start = 82800

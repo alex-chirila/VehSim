@@ -35,14 +35,7 @@ class Initializer
             uint16_t sectionOffset;
         } Section;
 
-        typedef struct
-        {
-            string routeName;
-            vector<uint16_t> segList; //first element is the start point
-            vector<uint16_t> insertionPoints;
-        } Route;
-
         vector<Section> SectList;
         vector<string> IniFileContents;
-        vector<Route> RouteList;
+        //vector<Route> RouteList;
 };
